@@ -1,6 +1,6 @@
 <h1 align="center">Monlight Cafe</h1>
 <p align="center">
-  Built with React JS
+  Built with React JS.
 </p>
 
 [![react]( https://img.shields.io/badge/-ReactJs-61DAFB?logo=react)]()
@@ -23,14 +23,15 @@
 
 ## Features
 
-* Order feature for customer
+- Order feature for customer
+
 - Admin feature
 - Payment feature
 - And others
 
 ## Requirements
 
-* [`react js`](https://reactjs.org/)
+- [`react js`](https://reactjs.org/)
 
 ## Usage for development
 
@@ -55,7 +56,8 @@
 
 ## Previous Project
 
-* [`HTML CSS Slicing Monlight Cafe Apps`](https://github.com/rzkiyprtm/monlight-frontend)
+- [`HTML CSS Slicing Monlight Cafe Apps`](https://github.com/rzkiyprtm/monlight-frontend)
+
 - [`Backend Monlight Cafe`](https://github.com/rzkiyprtm/monlight.git)
 
 ## Contributors
