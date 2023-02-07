@@ -67,7 +67,43 @@ export class Payment extends Component {
   }
 
   getDatas = (url) => {
-    const link = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/transactions?`;
+    const link = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/transactions?page=1&limit=1`;
+    // console.log(link)
+    Axios.get(link, {
+      headers: {
+        "access-token": this.state.userinfo,
+      },
+    })
+      .then((res) => {
+        let nexPrev = res.data.meta.next;
+        console.log(nexPrev);
+        const data = res.data.data[0];
+        console.log(data);
+        // console.log(data);
+        let py = null;
+        if (data.method === "Card") py = 1;
+        if (data.method === "Bank Account") py = 2;
+        if (data.method === "Cash On Delivery") py = 3;
+        this.setState({
+          payment: py,
+          pending: data,
+          next: nexPrev,
+          isLoading: false,
+        });
+      })
+      .catch((err) => {
+        const msg = err.response.data.message;
+        if (msg === "data_not_found") {
+          this.setState({
+            isLoading: false,
+            notfound: true,
+          });
+        }
+      });
+  };
+
+  getDatas2 = (url) => {
+    const link = `${process.env.REACT_APP_BACKEND_HOST}/api/monlight-project/transactions?page=2&limit=1`;
     // console.log(link)
     Axios.get(link, {
       headers: {
@@ -269,8 +305,8 @@ export class Payment extends Component {
                 onClick={() => {
                   this.setState({ isLoading: true });
                   let nexts = this.state.next;
-                  if (!nexts) nexts = `/api/monlight-project/transactions`;
-                  this.getDatas(nexts);
+                  if (!nexts) nexts = `/api/monlight-project/transactions?`;
+                  this.getDatas2(nexts);
                 }}
               >
                 <div>
